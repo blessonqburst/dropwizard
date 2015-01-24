@@ -1,10 +1,12 @@
 package dwstart;
 
+import dwstart.resources.HelloResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
-public class DWGettingStartedApplication extends Application<DWGettingStartedConfiguration> {
+public class DWGettingStartedApplication
+        extends Application<DWGettingStartedConfiguration> {
 
     public static void main(final String[] args) throws Exception {
         new DWGettingStartedApplication().run(args);
@@ -22,8 +24,8 @@ public class DWGettingStartedApplication extends Application<DWGettingStartedCon
 
     @Override
     public void run(final DWGettingStartedConfiguration configuration,
-                    final Environment environment) {
-        // TODO: implement application
+            final Environment environment) {
+        environment.jersey().register(new HelloResource());
     }
 
 }
