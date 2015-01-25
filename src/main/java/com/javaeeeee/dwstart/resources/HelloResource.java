@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package dwstart.resources;
+package com.javaeeeee.dwstart.resources;
 
-import dwstart.core.Greeting;
+import com.javaeeeee.dwstart.core.Greeting;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

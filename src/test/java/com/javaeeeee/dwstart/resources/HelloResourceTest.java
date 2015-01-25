@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package dwstart.resources;
+package com.javaeeeee.dwstart.resources;
 
-import dwstart.core.Greeting;
+import com.javaeeeee.dwstart.core.Greeting;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Invocation;

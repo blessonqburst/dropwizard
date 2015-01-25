@@ -1,6 +1,6 @@
-package dwstart;
+package com.javaeeeee.dwstart;
 
-import dwstart.resources.HelloResource;
+import com.javaeeeee.dwstart.resources.HelloResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;

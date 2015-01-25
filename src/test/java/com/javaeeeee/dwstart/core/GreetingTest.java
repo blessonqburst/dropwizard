@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package dwstart.core;
+package com.javaeeeee.dwstart.core;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import static io.dropwizard.testing.FixtureHelpers.*;
