@@ -33,7 +33,8 @@ public class DWGettingStartedApplication
             final Environment environment) {
         environment.jersey().register(AuthFactory.binder(
                 new BasicAuthFactory<>(
-                        new GreetingAuthenticator(),
+                        new GreetingAuthenticator(configuration.getLogin(),
+                                configuration.getPassword()),
                         "SECURITY REALM",
                         User.class)));
         environment.jersey().register(new HelloResource());

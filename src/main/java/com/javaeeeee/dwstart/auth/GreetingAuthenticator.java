@@ -37,10 +37,32 @@ import io.dropwizard.auth.AuthenticationException;
 public class GreetingAuthenticator
         implements Authenticator<BasicCredentials, User> {
 
+    /**
+     * User login.
+     */
+    private String login;
+    /**
+     * User password.
+     */
+    private String password;
+
+    public GreetingAuthenticator(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
+    /**
+     * The method authenticate users.
+     *
+     * @param credentials user credentials, in this case login and password.
+     * @return Optional containing User if present and empty if absent.
+     * @throws AuthenticationException
+     */
     @Override
     public Optional<User> authenticate(BasicCredentials credentials)
             throws AuthenticationException {
-        if ("crimson".equals(credentials.getPassword())) {
+        if (password.equals(credentials.getPassword())
+                && login.equals(credentials.getUsername())) {
             return Optional.of(new User());
         } else {
             return Optional.absent();
