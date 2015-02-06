@@ -34,15 +34,16 @@ import io.dropwizard.auth.AuthenticationException;
  *
  * @author Dmitry Noranovich
  */
-public class GreetingAuthenticator implements Authenticator<BasicCredentials, User> {
+public class GreetingAuthenticator
+        implements Authenticator<BasicCredentials, User> {
 
     @Override
-    public Optional<User> authenticate(BasicCredentials credentials) throws AuthenticationException {
+    public Optional<User> authenticate(BasicCredentials credentials)
+            throws AuthenticationException {
         if ("crimson".equals(credentials.getPassword())) {
             return Optional.of(new User());
         } else {
             return Optional.absent();
         }
     }
-
 }
