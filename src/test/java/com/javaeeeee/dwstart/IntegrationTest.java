@@ -21,63 +21,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.javaeeeee.dwstart.resources;
+package com.javaeeeee.dwstart;
 
-import com.javaeeeee.dwstart.core.User;
-import io.dropwizard.testing.junit.ResourceTestRule;
+import io.dropwizard.testing.junit.DropwizardAppRule;
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Rule;
+import org.junit.ClassRule;
 
 /**
- * Tests of secured with basic authentication resources.
+ * Integration Test for DWGettingStarted application.
  *
  * @author Dmitry Noranovich
  */
-public class SecuredHelloResourceTest {
+public class IntegrationTest {
 
     /**
-     * Do some setup in order to provide tests with javax.ws.rs.client.Client in
-     * order to access resources from Java.
+     * Starts up the application.
      */
-    @Rule
-    public ResourceTestRule resource = ResourceTestRule.builder()
-            .addResource(new SecuredHelloResource()).build();
-
-    public SecuredHelloResourceTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
+    @ClassRule
+    public static final DropwizardAppRule RULE
+            = new DropwizardAppRule(DWGettingStartedApplication.class,
+                    "config.yml");
 
     /**
-     * Test of getGreeting method, of class SecuredHelloResource.
+     * Test secured greeting resource, happy path.
      */
     @Test
     public void testGetGreeting() {
         String expected = "Hello world!";
         //Obtain client
-        Client client = resource.client();
+        Client client = ClientBuilder.newClient();
+        //Build a feature in basic authentication mode
+        HttpAuthenticationFeature feature
+                = HttpAuthenticationFeature.basic("javaeeeee", "crimson");
+        //Register the feature
+        client.register(feature);
         //Get actual resul string
         String actual = client
                 .target("http://localhost:8080/secured_hello")
@@ -88,4 +71,26 @@ public class SecuredHelloResourceTest {
 
     }
 
+    /**
+     * Test secured greeting resource, sad path.
+     */
+    @Test
+    public void testGetGreetingUnauthorized() {
+        //Obtain client
+        Client client = ClientBuilder.newClient();
+        //Build a feature in basic authentication mode with wrong credentials
+        HttpAuthenticationFeature feature
+                = HttpAuthenticationFeature.basic("user", "password");
+        //Register the feature
+        client.register(feature);
+        //Get response
+        Response response = client
+                .target("http://localhost:8080/secured_hello")
+                .request(MediaType.TEXT_PLAIN)
+                .get();
+        //Do an assertion
+        assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(),
+                response.getStatus());
+
+    }
 }
