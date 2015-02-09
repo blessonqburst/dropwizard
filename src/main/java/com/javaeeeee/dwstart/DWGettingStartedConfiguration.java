@@ -6,5 +6,36 @@ import org.hibernate.validator.constraints.*;
 import javax.validation.constraints.*;
 
 public class DWGettingStartedConfiguration extends Configuration {
-    // TODO: implement service configuration
+
+    /**
+     * User login.
+     */
+    @NotNull
+    private String login;
+    /**
+     * User password.
+     */
+    @NotNull
+    private String password;
+
+    /**
+     * Login getter.
+     *
+     * @return
+     */
+    @JsonProperty
+    public String getLogin() {
+        return login;
+    }
+
+    /**
+     * Password getter.
+     *
+     * @return
+     */
+    @JsonProperty
+    public String getPassword() {
+        return password;
+    }
+
 }

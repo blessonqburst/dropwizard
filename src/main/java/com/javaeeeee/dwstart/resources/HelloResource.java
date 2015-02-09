@@ -23,8 +23,8 @@
  */
 package com.javaeeeee.dwstart.resources;
 
+import com.google.common.base.Optional;
 import com.javaeeeee.dwstart.core.Greeting;
-import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -59,8 +59,7 @@ public class HelloResource {
     @Path("/path_param/{name}")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String getTailoredGreetingPathParam(@PathParam(value = "name")
-            String name) {
+    public String getTailoredGreetingPathParam(@PathParam(value = "name") String name) {
         return "Hello " + name;
     }
 
@@ -86,9 +85,15 @@ public class HelloResource {
     @Path("/query_param")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String getTailoredGreetingWithQueryParam(@DefaultValue("world")
-            @QueryParam("name") String name) {
-        return "Hello " + name;
+    public String getTailoredGreetingWithQueryParam(
+            @QueryParam("name") Optional<String> name) {
+        if (name.isPresent()) {
+            return "Hello " + name.get();
+        } else {
+            return "Hello world";
+        }
+        //The same can be accomplished using or(...) method to provide the defalt value
+        //return "Hello " + name.or("world");
     }
 
     /**
