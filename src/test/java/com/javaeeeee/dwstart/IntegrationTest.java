@@ -24,10 +24,12 @@
 package com.javaeeeee.dwstart;
 
 import io.dropwizard.testing.junit.DropwizardAppRule;
+import javax.net.ssl.SSLContext;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.glassfish.jersey.SslConfigurator;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -44,8 +46,8 @@ public class IntegrationTest {
      * Starts up the application.
      */
     @ClassRule
-    public static final DropwizardAppRule RULE
-            = new DropwizardAppRule(DWGettingStartedApplication.class,
+    public static final DropwizardAppRule<DWGettingStartedConfiguration> RULE
+            = new DropwizardAppRule<>(DWGettingStartedApplication.class,
                     "config.yml");
 
     /**
@@ -64,6 +66,39 @@ public class IntegrationTest {
         //Get actual resul string
         String actual = client
                 .target("http://localhost:8080/secured_hello")
+                .request(MediaType.TEXT_PLAIN)
+                .get(String.class);
+        //Do an assertion
+        assertEquals(expected, actual);
+
+    }
+
+    /**
+     * Test secured greeting resource using HTTPS, happy path.
+     */
+    @Test
+    public void testGetGreetingHttps() {
+        String expected = "Hello world!";
+        //Create SSL Configurator
+        SslConfigurator sslConfigurator = SslConfigurator.newInstance();
+        //Register a keystore
+        sslConfigurator.trustStoreFile("dwstart.keystore")
+                .trustStorePassword("crimson");
+        //Create SSL Context
+        SSLContext sSLContext = sslConfigurator.createSSLContext();
+        //Obtain client
+        Client client = ClientBuilder
+                .newBuilder()
+                .sslContext(sSLContext)
+                .build();
+        //Build a feature in basic authentication mode
+        HttpAuthenticationFeature feature
+                = HttpAuthenticationFeature.basic("javaeeeee", "crimson");
+        //Register the feature
+        client.register(feature);
+        //Get actual resul string
+        String actual = client
+                .target("https://localhost:8443/secured_hello")
                 .request(MediaType.TEXT_PLAIN)
                 .get(String.class);
         //Do an assertion

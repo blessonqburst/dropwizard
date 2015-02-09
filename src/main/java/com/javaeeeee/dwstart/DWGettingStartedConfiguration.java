@@ -18,11 +18,21 @@ public class DWGettingStartedConfiguration extends Configuration {
     @NotNull
     private String password;
 
+    /**
+     * Login getter.
+     *
+     * @return
+     */
     @JsonProperty
     public String getLogin() {
         return login;
     }
 
+    /**
+     * Password getter.
+     *
+     * @return
+     */
     @JsonProperty
     public String getPassword() {
         return password;

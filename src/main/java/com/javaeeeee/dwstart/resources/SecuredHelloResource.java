@@ -42,6 +42,7 @@ public class SecuredHelloResource {
     /**
      * Method produces greetings only to authenticated users.
      *
+     * @param user currently logged-in user.
      * @return string "Hello world!"
      */
     @GET

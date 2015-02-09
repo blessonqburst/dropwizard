@@ -23,15 +23,9 @@
  */
 package com.javaeeeee.dwstart.resources;
 
-import com.javaeeeee.dwstart.core.User;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.core.MediaType;
-import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Rule;
@@ -50,25 +44,6 @@ public class SecuredHelloResourceTest {
     @Rule
     public ResourceTestRule resource = ResourceTestRule.builder()
             .addResource(new SecuredHelloResource()).build();
-
-    public SecuredHelloResourceTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of getGreeting method, of class SecuredHelloResource.

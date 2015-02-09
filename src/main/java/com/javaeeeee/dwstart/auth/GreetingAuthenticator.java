@@ -46,6 +46,12 @@ public class GreetingAuthenticator
      */
     private String password;
 
+    /**
+     * Constructor.
+     *
+     * @param login user-ID
+     * @param password password
+     */
     public GreetingAuthenticator(String login, String password) {
         this.login = login;
         this.password = password;
