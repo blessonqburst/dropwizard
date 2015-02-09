@@ -92,7 +92,7 @@ public class HelloResource {
         } else {
             return "Hello world";
         }
-        //The same can be accomplished using or(...) method to provide the defalt value
+        //The same can be accomplished using or(...) method to provide the default value
         //return "Hello " + name.or("world");
     }
 
