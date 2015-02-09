@@ -20,7 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dropwizard.version>0.8.0-rc2</dropwizard.version>
-        <mainClass>dwstart.DWGettingStartedApplication</mainClass>
+        <mainClass>com.javaeeeee.dwstart.DWGettingStartedApplication</mainClass>
     </properties>
 
     <dependencies>
