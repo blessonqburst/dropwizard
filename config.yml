@@ -16,7 +16,7 @@ server:
           keyStorePassword: crimson
           validateCerts: false
 
-# Database settings.          
+# Database settings.
 database:
     # the name of the JDBC driver, mysql in our case
     driverClass: com.mysql.jdbc.Driver
