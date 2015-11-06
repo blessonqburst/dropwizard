@@ -50,33 +50,32 @@ public class EmployeesResource {
      */
     private EmployeeDAO employeeDAO;
 
+    /**
+     * Constructor
+     *
+     * @param employeeDAO DAO object to manipulate employees.
+     */
     public EmployeesResource(EmployeeDAO employeeDAO) {
         this.employeeDAO = employeeDAO;
     }
 
     /**
-     * Method returns all employees stored in the database.
-     *
-     * @return list of all employees stored in the database
-     */
-    @GET
-    @UnitOfWork
-    public List<Employee> findAll() {
-        return employeeDAO.findAll();
-    }
-
-    /**
      * Looks for employees whose first or last name contains the passed
-     * parameter as a substring.
+     * parameter as a substring. If name argument was not passed, returns all
+     * employees stored in the database.
      *
      * @param name query parameter
      * @return list of employees whose first or last name contains the passed
-     * parameter as a substring.
+     * parameter as a substring or list of all employees stored in the database.
      */
     @GET
     @UnitOfWork
-    public List<Employee> findByName(@QueryParam("name") String name) {
-        return employeeDAO.findByName(name);
+    public List<Employee> findByName(@QueryParam("name") Optional<String> name) {
+        if (name.isPresent()) {
+            return employeeDAO.findByName(name.get());
+        } else {
+            return employeeDAO.findAll();
+        }
     }
 
     /**
@@ -87,7 +86,7 @@ public class EmployeesResource {
      * otherwise.
      */
     @GET
-    @Path("/id")
+    @Path("/{id}")
     @UnitOfWork
     public Optional<Employee> findById(@PathParam("id") LongParam id) {
         return employeeDAO.findById(id.get());

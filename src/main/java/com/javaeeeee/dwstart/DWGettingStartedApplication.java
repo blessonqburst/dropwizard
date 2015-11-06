@@ -4,6 +4,7 @@ import com.javaeeeee.dwstart.auth.GreetingAuthenticator;
 import com.javaeeeee.dwstart.core.Employee;
 import com.javaeeeee.dwstart.core.User;
 import com.javaeeeee.dwstart.db.EmployeeDAO;
+import com.javaeeeee.dwstart.resources.EmployeesResource;
 import com.javaeeeee.dwstart.resources.HelloResource;
 import com.javaeeeee.dwstart.resources.SecuredHelloResource;
 import io.dropwizard.Application;
@@ -14,6 +15,11 @@ import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
+/**
+ * The application class.
+ *
+ * @author Dmitry Noranovich
+ */
 public class DWGettingStartedApplication
         extends Application<DWGettingStartedConfiguration> {
 
@@ -32,6 +38,12 @@ public class DWGettingStartedApplication
 
             };
 
+    /**
+     * The main method of the application.
+     *
+     * @param args command-line arguments
+     * @throws Exception
+     */
     public static void main(final String[] args) throws Exception {
         new DWGettingStartedApplication().run(args);
     }
@@ -60,7 +72,7 @@ public class DWGettingStartedApplication
                         User.class)));
         environment.jersey().register(new HelloResource());
         environment.jersey().register(new SecuredHelloResource());
-        environment.jersey().register(null);
+        environment.jersey().register(new EmployeesResource(employeeDAO));
     }
 
 }

@@ -36,6 +36,11 @@ import org.hibernate.SessionFactory;
  */
 public class EmployeeDAO extends AbstractDAO<Employee> {
 
+    /**
+     * Constructor
+     *
+     * @param sessionFactory Hibernate session factory.
+     */
     public EmployeeDAO(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
@@ -58,7 +63,12 @@ public class EmployeeDAO extends AbstractDAO<Employee> {
      * parameter as a substring.
      */
     public List<Employee> findByName(String name) {
-        return list(namedQuery("com.javaeeeee.dwstart.core.Employee.findByName"));
+        StringBuilder builder = new StringBuilder("%");
+        builder.append(name).append("%");
+        return list(
+                namedQuery("com.javaeeeee.dwstart.core.Employee.findByName")
+                .setParameter("name", builder.toString())
+        );
     }
 
     /**

@@ -6,6 +6,11 @@ import io.dropwizard.db.DataSourceFactory;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
+/**
+ * The Configuration class.
+ *
+ * @author javaeeeee
+ */
 public class DWGettingStartedConfiguration extends Configuration {
 
     /**
