@@ -24,10 +24,12 @@ public class DWGettingStartedApplication
         extends Application<DWGettingStartedConfiguration> {
 
     /**
-     * Hibernate bundle
+     * Hibernate bundle.
      */
     private final HibernateBundle<DWGettingStartedConfiguration> hibernateBundle
-            = new HibernateBundle<DWGettingStartedConfiguration>(Employee.class) {
+            = new HibernateBundle<DWGettingStartedConfiguration>(
+                    Employee.class
+            ) {
 
                 @Override
                 public DataSourceFactory getDataSourceFactory(

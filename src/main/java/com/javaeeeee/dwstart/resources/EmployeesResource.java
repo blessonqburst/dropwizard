@@ -51,7 +51,7 @@ public class EmployeesResource {
     private EmployeeDAO employeeDAO;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param employeeDAO DAO object to manipulate employees.
      */
@@ -70,7 +70,9 @@ public class EmployeesResource {
      */
     @GET
     @UnitOfWork
-    public List<Employee> findByName(@QueryParam("name") Optional<String> name) {
+    public List<Employee> findByName(
+            @QueryParam("name") Optional<String> name
+    ) {
         if (name.isPresent()) {
             return employeeDAO.findByName(name.get());
         } else {

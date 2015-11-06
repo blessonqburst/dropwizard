@@ -37,7 +37,7 @@ import org.hibernate.SessionFactory;
 public class EmployeeDAO extends AbstractDAO<Employee> {
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param sessionFactory Hibernate session factory.
      */
