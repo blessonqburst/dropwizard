@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 /**
  * The Configuration class.
  *
- * @author javaeeeee
+ * @author Dmitry Noranovich
  */
 public class DWGettingStartedConfiguration extends Configuration {
 
