@@ -147,6 +147,7 @@ public class Employee {
         return true;
     }
 
+    //Getters and setters.
     public long getId() {
         return id;
     }

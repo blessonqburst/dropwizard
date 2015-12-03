@@ -62,7 +62,8 @@ public class GreetingAuthenticator
      *
      * @param credentials user credentials, in this case login and password.
      * @return Optional containing User if present and empty if absent.
-     * @throws AuthenticationException
+     * @throws AuthenticationException exception thrown in the case of
+     * authentication problems.
      */
     @Override
     public Optional<User> authenticate(BasicCredentials credentials)
