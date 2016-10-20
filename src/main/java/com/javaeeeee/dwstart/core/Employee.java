@@ -23,6 +23,7 @@
  */
 package com.javaeeeee.dwstart.core;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,7 +50,7 @@ import javax.persistence.Table;
             + "where e.firstName like :name "
             + "or e.lastName like :name")
 })
-public class Employee {
+public class Employee implements Serializable {
 
     /**
      * Entity's unique identifier.

@@ -42,7 +42,7 @@ public class DWGettingStartedConfiguration extends Configuration {
      */
     @NotNull
     @Valid
-    private DataSourceFactory dataSourceFactory
+    private final DataSourceFactory dataSourceFactory
             = new DataSourceFactory();
 
     /**
@@ -50,12 +50,12 @@ public class DWGettingStartedConfiguration extends Configuration {
      */
     @Valid
     @NotNull
-    private JerseyClientConfiguration jerseyClientConfiguration
+    private final JerseyClientConfiguration jerseyClientConfiguration
             = new JerseyClientConfiguration();
 
     /**
-     * 
-     * @return Jersey Client 
+     *
+     * @return Jersey Client
      */
     @JsonProperty("jerseyClient")
     public JerseyClientConfiguration getJerseyClientConfiguration() {

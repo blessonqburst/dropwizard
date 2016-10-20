@@ -48,7 +48,7 @@ public class EmployeesResource {
     /**
      * The DAO object to manipulate employees.
      */
-    private EmployeeDAO employeeDAO;
+    private final EmployeeDAO employeeDAO;
 
     /**
      * Constructor.

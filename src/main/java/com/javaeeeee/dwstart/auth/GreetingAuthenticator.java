@@ -40,11 +40,11 @@ public class GreetingAuthenticator
     /**
      * User login.
      */
-    private String login;
+    private final String login;
     /**
      * User password.
      */
-    private String password;
+    private final String password;
 
     /**
      * Constructor.

@@ -59,7 +59,8 @@ public class HelloResource {
     @Path("/path_param/{name}")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String getTailoredGreetingPathParam(@PathParam(value = "name") String name) {
+    public String getTailoredGreetingPathParam(
+            @PathParam(value = "name") String name) {
         return "Hello " + name;
     }
 
@@ -93,7 +94,7 @@ public class HelloResource {
             return "Hello world";
         }
         //The same can be accomplished using or(...) method to provide the default value
-        //return "Hello " + name.or("world");
+        //return "Hello " + name.orElse("world");
     }
 
     /**
