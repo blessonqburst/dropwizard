@@ -42,7 +42,8 @@ import javax.persistence.Table;
 @Table(name = "employees")
 @NamedQueries({
     @NamedQuery(name = "com.javaeeeee.dwstart.core.Employee.findAll",
-            query = "select e from Employee e"),
+            query = "select e from Employee e")
+    ,
     @NamedQuery(name = "com.javaeeeee.dwstart.core.Employee.findByName",
             query = "select e from Employee e "
             + "where e.firstName like :name "
@@ -96,7 +97,8 @@ public class Employee {
      * @param phone employee phone
      * @param e_mail employee e-mail
      */
-    public Employee(String firstName, String lastName, String position, String phone, String e_mail) {
+    public Employee(String firstName,
+            String lastName, String position, String phone, String e_mail) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
