@@ -23,7 +23,7 @@
  */
 package com.javaeeeee.dwstart.resources;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.javaeeeee.dwstart.core.Employee;
 import com.javaeeeee.dwstart.db.EmployeeDAO;
 import io.dropwizard.hibernate.UnitOfWork;

@@ -15,6 +15,7 @@ server:
           keyStorePath: dwstart.keystore
           keyStorePassword: crimson
           validateCerts: false
+          validatePeers: false
 
 # Database settings.
 database:

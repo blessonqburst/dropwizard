@@ -23,11 +23,18 @@
  */
 package com.javaeeeee.dwstart.core;
 
+import java.security.Principal;
+
 /**
  * A class which contains functionality of a user of the application.
  *
  * @author Dmitry Noranovich
  */
-public class User {
+public class User implements Principal {
+
+    @Override
+    public String getName() {
+        return "Some name";
+    }
 
 }

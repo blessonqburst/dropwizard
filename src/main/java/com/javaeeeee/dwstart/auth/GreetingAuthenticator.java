@@ -23,7 +23,7 @@
  */
 package com.javaeeeee.dwstart.auth;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import io.dropwizard.auth.Authenticator;
 import io.dropwizard.auth.basic.BasicCredentials;
 import com.javaeeeee.dwstart.core.User;
@@ -72,7 +72,7 @@ public class GreetingAuthenticator
                 && login.equals(credentials.getUsername())) {
             return Optional.of(new User());
         } else {
-            return Optional.absent();
+            return Optional.empty();
         }
     }
 }

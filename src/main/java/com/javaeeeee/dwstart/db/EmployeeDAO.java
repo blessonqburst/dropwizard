@@ -23,7 +23,7 @@
  */
 package com.javaeeeee.dwstart.db;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.javaeeeee.dwstart.core.Employee;
 import io.dropwizard.hibernate.AbstractDAO;
 import java.util.List;
@@ -79,6 +79,6 @@ public class EmployeeDAO extends AbstractDAO<Employee> {
      * otherwise.
      */
     public Optional<Employee> findById(long id) {
-        return Optional.fromNullable(get(id));
+        return Optional.ofNullable(get(id));
     }
 }

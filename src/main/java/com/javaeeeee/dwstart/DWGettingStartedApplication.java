@@ -9,14 +9,16 @@ import com.javaeeeee.dwstart.resources.EmployeesResource;
 import com.javaeeeee.dwstart.resources.HelloResource;
 import com.javaeeeee.dwstart.resources.SecuredHelloResource;
 import io.dropwizard.Application;
-import io.dropwizard.auth.AuthFactory;
-import io.dropwizard.auth.basic.BasicAuthFactory;
+import io.dropwizard.auth.AuthDynamicFeature;
+import io.dropwizard.auth.AuthValueFactoryProvider;
+import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
 import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import javax.ws.rs.client.Client;
+import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
 /**
  * The application class.
@@ -34,14 +36,14 @@ public class DWGettingStartedApplication
                     Employee.class
             ) {
 
-                @Override
-                public DataSourceFactory getDataSourceFactory(
-                        DWGettingStartedConfiguration configuration
-                ) {
-                    return configuration.getDataSourceFactory();
-                }
+        @Override
+        public DataSourceFactory getDataSourceFactory(
+                DWGettingStartedConfiguration configuration
+        ) {
+            return configuration.getDataSourceFactory();
+        }
 
-            };
+    };
 
     /**
      * The main method of the application.
@@ -75,12 +77,15 @@ public class DWGettingStartedApplication
                 .using(configuration.getJerseyClientConfiguration())
                 .build(getName());
         //Register authenticator.
-        environment.jersey().register(AuthFactory.binder(
-                new BasicAuthFactory<>(
-                        new GreetingAuthenticator(configuration.getLogin(),
-                                configuration.getPassword()),
-                        "SECURITY REALM",
-                        User.class)));
+
+        environment.jersey().register(new AuthDynamicFeature(
+                new BasicCredentialAuthFilter.Builder<User>()
+                        .setAuthenticator(new GreetingAuthenticator(configuration.getLogin(),
+                                configuration.getPassword()))
+                        .setRealm("SECURITY REALM")
+                        .buildAuthFilter()));
+        environment.jersey().register(RolesAllowedDynamicFeature.class);
+        environment.jersey().register(new AuthValueFactoryProvider.Binder<>(User.class));
         //Register a simple resource.
         environment.jersey().register(new HelloResource());
         //Register a secured resource.

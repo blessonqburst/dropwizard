@@ -23,7 +23,7 @@
  */
 package com.javaeeeee.dwstart.resources;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 import com.javaeeeee.dwstart.core.CurrencyData;
 import java.util.Date;
 import javax.ws.rs.BadRequestException;
@@ -188,7 +188,7 @@ public class ConverterResourceTest {
      */
     public void testConvertSadPathNoAmount() {
         System.out.println("convert");
-        Optional<Double> amount = Optional.absent();
+        Optional<Double> amount = Optional.empty();
         exception.expect(BadRequestException.class);
         exception.expectMessage(ConverterResource.AMOUNT_IS_NECESSARY);
         sut.convert(amount, EUR, CAD);
