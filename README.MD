@@ -1,4 +1,5 @@
 A simple project using Dropwizard for a series of tutorials.  
+  
 To checkout the project type `git clone https://dnoranovich@bitbucket.org/dnoranovich/dropwizard-getting-started.git`  
 
 Its description can be found here:  
@@ -13,9 +14,9 @@ To work with the database part of tutorial it is necessary to have MySql server 
 Database settings can be found in the `config.yml` file. Change it to switch to another RDBMS.  
 
 To run the application type the two following commands:  
-        * `mvn clean package`
-        * `java -jar target/DWGettingStarted-1.0-SNAPSHOT.jar server config.yml`
-
+        * `mvn clean package`  
+        * `java -jar target/DWGettingStarted-1.0-SNAPSHOT.jar server config.yml`  
+  
 Also, here is a link to my [Dropwizard Udemy course](https://www.udemy.com/getting-started-with-dropwizard/?couponCode=bb10).  
-
+  
 
